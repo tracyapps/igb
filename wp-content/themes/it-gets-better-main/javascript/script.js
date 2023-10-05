@@ -19,7 +19,7 @@ jQuery(document).ready(function($){
     $(".footer-logo-white").addClass('block');
     $(".custom-logo-link").addClass('hidden');
     $('.high-contrast a').text("Light Mode");
-  } 
+  }
   else {
     document.documentElement.classList.remove('dark');
     $(".high-contrast").removeClass('active');
@@ -40,7 +40,7 @@ jQuery(document).ready(function($){
     localStorage.theme = "light";
   }
 
-    //show high contrast mode..
+    //show dark mode..
   $(".high-contrast").click(function(event){
     event.preventDefault();
 
@@ -80,7 +80,7 @@ jQuery(document).ready(function($){
     window.location.replace(href);
   })
 
-  $('#safeExitContent').on( "mouseleave",function(event){  
+  $('#safeExitContent').on( "mouseleave",function(event){
     event.preventDefault();
     $('#safeExitContent').addClass('hidden');
   });
@@ -141,7 +141,7 @@ jQuery(document).ready(function($){
     var $topNav = $('#topNav');
     var $siteNav = $('#siteNavigation');
     var $body = $('body');
-    var scrollThreshold = $topNav.outerHeight();   
+    var scrollThreshold = $topNav.outerHeight();
     var windowScrollTop = window.scrollY;
 
     if(windowScrollTop >= scrollThreshold) {
@@ -171,7 +171,7 @@ jQuery(document).ready(function($){
       var imageLeftPosition = 0;
       var imageHeight = $anchor.data('overlay-height');
       var imageWidth = $anchor.data('overlay-width');
-   
+
       if(isTopMenu && $submenu.length > 0 && !$parent.hasClass('menu-item-sub')) {
         imageTopPosition = $anchor.offset().top + $anchor.height() + 50;
         imageLeftPosition = $wrapper.offset().left +  imageWidth;
@@ -188,10 +188,10 @@ jQuery(document).ready(function($){
         imageTopPosition = $anchor.offset().top - imageHeight  - 50;
         imageLeftPosition = $wrapper.offset().left +  imageWidth;
       }
-      else if(isMiddleMenu && $submenu.length > 0 && !$parent.hasClass('menu-item-sub')) {  
+      else if(isMiddleMenu && $submenu.length > 0 && !$parent.hasClass('menu-item-sub')) {
         imageTopPosition = $anchor.offset().top - imageHeight  - 50;
         imageLeftPosition = (($wrapper.width() / 2) - (imageWidth / 2));
-      } 
+      }
       else if(isMiddleMenu && $submenu.length <= 0 && !$parent.hasClass('menu-item-sub')) {
         imageTopPosition = $wrapper.offset().top;
         imageLeftPosition = $wrapper.width() - imageWidth;
@@ -211,14 +211,14 @@ jQuery(document).ready(function($){
     }
   });
 
-  $('.menu-item-has-children a').mouseenter(function() {    
-    if($(window).width() >= 1440) { 
-      $(this).parent().find('.sub-menu-wrapper').fadeIn().css('display','flex'); 
-    }     
+  $('.menu-item-has-children a').mouseenter(function() {
+    if($(window).width() >= 1440) {
+      $(this).parent().find('.sub-menu-wrapper').fadeIn().css('display','flex');
+    }
   });
 
   $('.menu-item-has-children.menu-item').mouseleave(function() {
-    if($(window).width() >= 1440) { 
+    if($(window).width() >= 1440) {
       $(this).parent().find('.sub-menu-wrapper').fadeOut();
     }
   });
@@ -295,7 +295,7 @@ jQuery(document).ready(function($){
     responsive: [
 			{
         breakpoint: 1440,
-        settings: { 
+        settings: {
           adaptiveHeight: true,
         }
     	},
@@ -343,7 +343,7 @@ jQuery(document).ready(function($){
         var $checkbox = $(this);
         var showIn = $checkbox.data('show');
         var showInList = showIn.toString().split(',');
-  
+
         if(showInList.some(item => values.includes(item))) {
           $checkbox.closest('li').show();
         }
@@ -365,7 +365,7 @@ jQuery(document).ready(function($){
     queryString += termCategories.length > 0 && !defaultTermCategories.every((p) => termCategories.includes(p)) ? `termCategory=${encodeURIComponent(JSON.stringify(termCategories))}` : '';
     queryString += glossaryTerms.length > 0 ? `&glossaryTerm=${encodeURIComponent(JSON.stringify([...new Set(glossaryTerms)]))}` : '';
     queryString += postTypes.length > 0 && !defaultPostTypes.every((p) => postTypes.includes(p)) ? `&postType=${encodeURIComponent(JSON.stringify(postTypes))}` :  `&postType=${encodeURIComponent(JSON.stringify(defaultPostTypes))}`;
-    queryString += sort !== defaultSort ? `&sort=${sort}`: ''; 
+    queryString += sort !== defaultSort ? `&sort=${sort}`: '';
     queryString += urlParams.get('term') !== null ? `&term=${urlParams.get('term')}` : '';
 
     redirectToQuery(queryString);
@@ -374,7 +374,7 @@ jQuery(document).ready(function($){
   $('.mobile-filter input[name="termCategory"]').on('change', function() {
     var values = [];
 
-    $('.mobile-filter input[name="termCategory"]:checked').each(function() { 
+    $('.mobile-filter input[name="termCategory"]:checked').each(function() {
       values.push($(this).val());
     });
 
@@ -384,7 +384,7 @@ jQuery(document).ready(function($){
   $('.main-filters input[name="termCategory"]').on('change', function() {
     var values = [];
 
-    $('.main-filters input[name="termCategory"]:checked').each(function() { 
+    $('.main-filters input[name="termCategory"]:checked').each(function() {
       values.push($(this).val());
     });
 
@@ -396,15 +396,15 @@ jQuery(document).ready(function($){
     var postTypes = [];
     var glossaryTerms = [];
     var sort = $('.main-filters select[name="sortResults"]').val();
-    
-    $('.desktop-filter input[name="glossaryTerm"]:checked').each(function() { 
-      glossaryTerms.push($(this).val()); 
+
+    $('.desktop-filter input[name="glossaryTerm"]:checked').each(function() {
+      glossaryTerms.push($(this).val());
     });
-    $('.main-filters input[name="postType"]:checked').each(function() { 
-      postTypes.push($(this).val()); 
+    $('.main-filters input[name="postType"]:checked').each(function() {
+      postTypes.push($(this).val());
     });
-    $('.main-filters input[name="termCategory"]:checked').each(function() { 
-      termCategories.push($(this).val()); 
+    $('.main-filters input[name="termCategory"]:checked').each(function() {
+      termCategories.push($(this).val());
     });
 
     submitQuery(termCategories, glossaryTerms, postTypes, sort)
@@ -415,15 +415,15 @@ jQuery(document).ready(function($){
     var postTypes = [];
     var glossaryTerms = [];
     var sort = $('.mobile-filter  select[name="sortResults"]').val();
-    
-    $('.mobile-filter  input[name="glossaryTerm"]:checked').each(function() { 
-      glossaryTerms.push($(this).val()); 
+
+    $('.mobile-filter  input[name="glossaryTerm"]:checked').each(function() {
+      glossaryTerms.push($(this).val());
     });
-    $('.mobile-filter  input[name="postType"]:checked').each(function() { 
-      postTypes.push($(this).val()); 
+    $('.mobile-filter  input[name="postType"]:checked').each(function() {
+      postTypes.push($(this).val());
     });
-    $('.mobile-filter  input[name="termCategory"]:checked').each(function() { 
-      termCategories.push($(this).val()); 
+    $('.mobile-filter  input[name="termCategory"]:checked').each(function() {
+      termCategories.push($(this).val());
     });
 
     submitQuery(termCategories, glossaryTerms, postTypes, sort);
@@ -433,16 +433,16 @@ jQuery(document).ready(function($){
     e.preventDefault();
     var path = window.location.pathname;
     var newPath = path.includes('page') ? window.location.origin + path.substring(0, path.indexOf('page')) : window.location.origin + path;
- 
+
     window.location = newPath;
   });
 
   $('.sort-button').on('click', function(e) {
     var sort = $('.main-filters select[name="sortResults"]').val();
-    var params = new URLSearchParams(window.location.search)    
-    
+    var params = new URLSearchParams(window.location.search)
+
     params.set('sort', sort);
-    
+
     redirectToQuery(params.toString());
   });
 
@@ -452,7 +452,7 @@ jQuery(document).ready(function($){
     $hero.find("h1, h2, p").removeAttr("style");
     $hero.find(".has-medium-font-size").removeClass("has-medium-font-size");
   }
-  
+
   $(document).ready(function() {
     $('.search-form').attr('autocomplete','off').find('.search-field').attr('autocomplete','off');
     resizeSlickButton();
@@ -545,13 +545,13 @@ jQuery(document).ready(function($){
     $('html, body').removeAttr('style');
   })
 
-  $('a[data-popover="true"]').webuiPopover({ 
+  $('a[data-popover="true"]').webuiPopover({
     content: function(){
-      var $this = $(this); 
+      var $this = $(this);
       var content = $this.attr('data-contentElement');
       var html = $(content).html();
 
       return html;
-    } 
+    }
   });
 });
